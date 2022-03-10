@@ -1,29 +1,41 @@
 package com.vicoaguado.flutter_wallet;
 
+import io.flutter.embedding.engine.plugins.FlutterPlugin;
 import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
 import io.flutter.plugin.common.PluginRegistry.Registrar;
-import io.flutter.embedding.engine.plugins.FlutterPlugin;
-
 
 /** FlutterWalletPlugin */
 public class FlutterWalletPlugin implements MethodCallHandler, FlutterPlugin {
+  private Context mContext;
+
   /** Plugin registration. */
   public static void registerWith(Registrar registrar) {
     FlutterWalletPlugin instance = new FlutterWalletPlugin();
     instance.onAttachedToEngine(registrar.messenger());
   }
 
+  /*@Override
+  public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
+    // TODO: your plugin is now attached to a Flutter experience.
+  }
+
   @Override
-  public void onAttachedToEngine(FlutterPluginBinding binding) {
+  public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+    // TODO: your plugin is no longer attached to a Flutter experience.
+  }*/
+
+  @Override
+  public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
     onAttachedToEngine(binding.getBinaryMessenger());
   }
 
-  private void onAttachedToEngine(BinaryMessenger messenger) {
-    final MethodChannel channel = new MethodChannel(messenger, "flutter_wallet");
-    channel.setMethodCallHandler(this);
+  private void onAttachedToEngine(Context applicationContext, BinaryMessenger messenger) {
+    this.mContext = applicationContext;
+    methodChannel = new MethodChannel(messenger, "flutter_wallet");
+    methodChannel.setMethodCallHandler(this);
   }
 
   @Override
