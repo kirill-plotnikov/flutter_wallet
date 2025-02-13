@@ -1,5 +1,5 @@
 /**
- *
+ * 
 Flutter Wallet
 
 Copyright (c) 2019 the Flutter Wallet authors.
@@ -40,7 +40,7 @@ class FlutterWallet {
   /// Returns bool value if iOS can covert one pkpass file
   ///
   /// - parameters:
-  ///    - pkpass: List with <int> values from pkpass file
+  ///    - pkpass: List with <int> values from pkpass file 
   static Future<bool?> addPass({required List<int> pkpass}) async {
     final bool? result = await _channel
         .invokeMethod('addWalletPass', <String, dynamic>{'pkpass': pkpass});
