@@ -5,17 +5,12 @@ import io.flutter.plugin.common.MethodCall;
 import io.flutter.plugin.common.MethodChannel;
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler;
 import io.flutter.plugin.common.MethodChannel.Result;
-import io.flutter.plugin.common.PluginRegistry.Registrar;
 
 /** FlutterWalletPlugin */
 public class FlutterWalletPlugin implements MethodCallHandler, FlutterPlugin {
   private Context mContext;
 
-  /** Plugin registration. */
-  public static void registerWith(Registrar registrar) {
-    FlutterWalletPlugin instance = new FlutterWalletPlugin();
-    instance.onAttachedToEngine(registrar.messenger());
-  }
+  public void onDetachedFromActivityForConfigChanges() {}
 
   /*@Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
@@ -26,6 +21,11 @@ public class FlutterWalletPlugin implements MethodCallHandler, FlutterPlugin {
   public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
     // TODO: your plugin is no longer attached to a Flutter experience.
   }*/
+
+  @Override
+  public void onDetachedFromEngine(@NonNull FlutterPluginBinding binding) {
+    // TODO: your plugin is no longer attached to a Flutter experience.
+  }
 
   @Override
   public void onAttachedToEngine(@NonNull FlutterPluginBinding binding) {
